@@ -4,13 +4,13 @@
 
 
 ::  To activate, run the script with "/act" parameter or change 0 to 1 in below line
-set _activate=0
+set _activate=!
 
 ::  To Freeze the 30 days trial period, run the script with "/frz" parameter or change 0 to 1 in below line
 set _freeze=0
 
 ::  To reset the activation and trial, run the script with "/res" parameter or change 0 to 1 in below line
-set _reset=1
+set _reset=0
 
 ::  If value is changed in above lines or parameter is used then script will run in unattended mode
 
