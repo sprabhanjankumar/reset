@@ -4,7 +4,7 @@
 
 
 ::  To activate, run the script with "/act" parameter or change 0 to 1 in below line
-set _activate=!
+set _activate=1
 
 ::  To Freeze the 30 days trial period, run the script with "/frz" parameter or change 0 to 1 in below line
 set _freeze=0
@@ -638,8 +638,8 @@ echo:
 echo Applying registration details...
 echo:
 
-set /a fname = S Prabhanjan
-set /a lname = Kumar
+set /a fname = %random% %% 9999 + 1000
+set /a lname = %random% %% 9999 + 1000
 set email=%fname%.%lname%@tonec.com
 
 for /f "delims=" %%a in ('%psc% "$key = -join ((Get-Random -Count  20 -InputObject ([char[]]('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'))));$key = ($key.Substring(0,  5) + '-' + $key.Substring(5,  5) + '-' + $key.Substring(10,  5) + '-' + $key.Substring(15,  5) + $key.Substring(20));Write-Output $key" %nul6%') do (set key=%%a)
