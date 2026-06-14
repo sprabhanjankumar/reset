@@ -3,6 +3,20 @@
 @echo off
 
 
+
+::============================================================================
+::
+::   IDM Activation Script (IAS)
+::
+::   Homepages: https://github.com/WindowsAddict/IDM-Activation-Script
+::              https://massgrave.dev/idm-activation-script
+::
+::       Email: windowsaddict@protonmail.com
+::
+::============================================================================
+
+
+
 ::  To activate, run the script with "/act" parameter or change 0 to 1 in below line
 set _activate=1
 
@@ -574,8 +588,11 @@ if %frz%==0 call :register_IDM
 
 call :download_files
 if not defined _fileexist (
-    ...
-    goto :done
+%eline%
+echo Error: Unable to download files with IDM.
+echo:
+echo Help: %mas%idm-activation-script.html#Troubleshoot
+goto :done
 )
 
 %psc% "$sid = '%_sid%'; $HKCUsync = %HKCUsync%; $lockKey = 1; $deleteKey = $null; $f=[io.file]::ReadAllText('!_batp!') -split ':regscan\:.*';iex ($f[1])"
@@ -638,9 +655,9 @@ echo:
 echo Applying registration details...
 echo:
 
-set /a fname = %random% %% 9999 + 1000
-set /a lname = %random% %% 9999 + 1000
-set email=%fname%.%lname%@tonec.com
+set /a fname = S Prabhanjan
+set /a lname = Kumar
+set email=sprabhanjankumar@tonec.com
 
 for /f "delims=" %%a in ('%psc% "$key = -join ((Get-Random -Count  20 -InputObject ([char[]]('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'))));$key = ($key.Substring(0,  5) + '-' + $key.Substring(5,  5) + '-' + $key.Substring(10,  5) + '-' + $key.Substring(15,  5) + $key.Substring(20));Write-Output $key" %nul6%') do (set key=%%a)
 
@@ -656,6 +673,8 @@ set "reg=HKU\%_sid%\SOFTWARE\DownloadManager /v Email /t REG_SZ /d "%email%"" & 
 set "reg=HKU\%_sid%\SOFTWARE\DownloadManager /v Serial /t REG_SZ /d "%key%"" & call :_rcont
 )
 exit /b
+
+:download_files
 
 :download_files
 
